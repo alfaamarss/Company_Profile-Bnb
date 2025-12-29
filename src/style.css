@@ -1,0 +1,18 @@
+:root {
+  --bs-primary: #007bff; /* biru utama */
+  --bs-light: #ffffff; /* putih */
+  --bs-dark: #004080; /* biru gelap untuk teks */
+}
+
+body {
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+}
+
+a {
+  color: var(--bs-primary);
+}
+
+a:hover {
+  color: #0056b3; /* biru lebih gelap saat hover */
+}
