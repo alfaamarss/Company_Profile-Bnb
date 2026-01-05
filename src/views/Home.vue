@@ -6,11 +6,12 @@
     <Products />
     <CatalogColor />
     <Contact />
+    <FloatingContact />
   </div>
 </template>
 
 <script setup lang="ts">
-import Navbar from "../components/Navbar.vue";
+import FloatingContact from "../components/FloatingContact.vue";
 import HeroSection from "../components/HeroSection.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Services from "../components/Services.vue";

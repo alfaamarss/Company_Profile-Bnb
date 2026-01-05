@@ -1,22 +1,22 @@
 <template>
-  <section id="layanan" class="py-5 bg-light">
+  <section id="produk" class="py-5 bg-light">
     <div class="container">
       <h2 class="mb-4 text-center">Produk Kami</h2>
 
-      <div class="layanan-scroll-wrapper">
-        <div class="layanan-scroll d-flex gap-3">
-          <div class="card text-center flex-shrink-0 shadow-sm p-3 layanan-card" v-for="(layanan, index) in layananList" :key="index" style="width: 180px">
-            <img :src="layanan.img" alt="" class="img-fluid mb-2 rounded" style="height: 100px; object-fit: cover" />
-            <h6 class="fw-bold">{{ layanan.title }}</h6>
-            <p class="mb-0" style="font-size: 0.85rem">{{ layanan.desc }}</p>
+      <div class="produk-scroll-wrapper">
+        <div class="produk-scroll d-flex gap-3">
+          <div class="card text-center flex-shrink-0 shadow-sm p-3 produk-card" v-for="(produk, index) in produkList" :key="index" style="width: 180px">
+            <img :src="produk.img" alt="" class="img-fluid mb-2 rounded" style="height: 100px; object-fit: cover" />
+            <h6 class="fw-bold">{{ produk.title }}</h6>
+            <p class="mb-0" style="font-size: 0.85rem">{{ produk.desc }}</p>
           </div>
         </div>
         <!-- Duplicate untuk looping -->
-        <div class="layanan-scroll d-flex gap-3">
-          <div class="card text-center flex-shrink-0 shadow-sm p-3 layanan-card" v-for="(layanan, index) in layananList" :key="'dup-' + index" style="width: 180px">
-            <img :src="layanan.img" alt="" class="img-fluid mb-2 rounded" style="height: 100px; object-fit: cover" />
-            <h6 class="fw-bold">{{ layanan.title }}</h6>
-            <p class="mb-0" style="font-size: 0.85rem">{{ layanan.desc }}</p>
+        <div class="produk-scroll d-flex gap-3">
+          <div class="card text-center flex-shrink-0 shadow-sm p-3 produk-card" v-for="(produk, index) in produkList" :key="'dup-' + index" style="width: 180px">
+            <img :src="produk.img" alt="" class="img-fluid mb-2 rounded" style="height: 100px; object-fit: cover" />
+            <h6 class="fw-bold">{{ produk.title }}</h6>
+            <p class="mb-0" style="font-size: 0.85rem">{{ produk.desc }}</p>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ import decorativeImg from "../assets/decorative.png";
 import floorHardenerImg from "../assets/floor-hardener.png";
 import membranImg from "../assets/membran.png";
 
-const layananList = [
+const produkList = [
   { title: "Jasa Pengecatan Lantai Epoxy", desc: "Lantai kuat dan tahan lama", img: epoxyImg },
   { title: "Jasa Waterproofing", desc: "Lindungi bangunan dari air", img: waterproofingImg },
   { title: "Jasa Road Line Marking", desc: "Tanda batas lantai dan area", img: roadMarkingImg },
@@ -48,14 +48,14 @@ const layananList = [
 
 <style scoped>
 /* Section background */
-#layanan {
+#produk {
   padding: 2rem 0;
   background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
   color: white;
 }
 
 /* Wrapper & scroll */
-.layanan-scroll-wrapper {
+.produk-scroll-wrapper {
   display: flex;
   overflow-x: auto; /* Scroll manual aktif */
   scroll-behavior: smooth;
@@ -64,13 +64,13 @@ const layananList = [
   padding-bottom: 1rem;
 }
 
-.layanan-scroll {
+.produk-scroll {
   display: flex;
   gap: 1rem;
 }
 
 /* Setiap card sebagai snap point */
-.layanan-card {
+.produk-card {
   scroll-snap-align: start;
   min-width: 180px;
   flex-shrink: 0;
@@ -88,30 +88,30 @@ const layananList = [
   color: white;
 }
 
-.layanan-card:hover {
+.produk-card:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.layanan-card img {
+.produk-card img {
   border-radius: 12px;
   object-fit: cover;
   height: 100px;
 }
 
 /* Text */
-.layanan-card h6,
-.layanan-card p {
+.produk-card h6,
+.produk-card p {
   color: white;
 }
 
 /* Hide scrollbar for Chrome, Safari & Opera */
-.layanan-scroll-wrapper::-webkit-scrollbar {
+.produk-scroll-wrapper::-webkit-scrollbar {
   display: none;
 }
 /* Hide scrollbar for IE, Edge & Firefox */
-.layanan-scroll-wrapper {
+.produk-scroll-wrapper {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }

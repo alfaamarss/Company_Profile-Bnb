@@ -143,7 +143,7 @@ const closeModal = () => (selectedLayanan.value = null);
 /* Layanan track & slides */
 .layanan-track {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   transition: transform 0.45s ease;
 }
@@ -162,9 +162,14 @@ const closeModal = () => (selectedLayanan.value = null);
 
 /* MOBILE */
 @media (max-width: 768px) {
+  .layanan-wrapper {
+    position: relative;
+  }
+
   .layanan-track {
     display: flex;
     gap: 0;
+    transition: transform 0.45s ease;
   }
 
   .layanan-slide {
@@ -172,10 +177,42 @@ const closeModal = () => (selectedLayanan.value = null);
     flex: 0 0 100%;
   }
 
+  /* === SLIDER NAV === */
+  .slider-nav {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
   .slider-nav button {
-    background: rgba(255, 255, 255, 0.15);
+    pointer-events: all;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
     color: white;
-    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transition: 0.25s ease;
+  }
+
+  .slider-nav button:hover {
+    transform: translateY(-50%) scale(1.1);
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .slider-nav .left {
+    left: 8px;
+  }
+
+  .slider-nav .right {
+    right: 8px;
   }
 }
 
@@ -201,5 +238,20 @@ const closeModal = () => (selectedLayanan.value = null);
   color: white;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
+}
+
+.modal-content {
+  animation: modalIn 0.35s ease;
+}
+
+@keyframes modalIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>

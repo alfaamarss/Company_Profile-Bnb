@@ -1,21 +1,37 @@
 <template>
-  <MDBNavbar expand="lg" bg="body-tertiary" container class="navbar-scroll" :class="{ 'navbar-hidden': !showNavbar }">
+  <MDBNavbar expand="lg" container class="navbar-scroll" :class="{ 'navbar-hidden': !showNavbar }">
     <MDBNavbarBrand>
-      <a href="#" class="navbar-brand fw-bold">Cv. Berkah Doa Bunda</a>
+      <a href="#home" class="navbar-brand fw-bold">CV. Berkah Doa Bunda</a>
     </MDBNavbarBrand>
 
     <MDBNavbarToggler @click="collapse = !collapse" />
+
     <MDBCollapse v-model="collapse">
       <MDBNavbarNav class="d-flex w-100 justify-content-end mb-2 mb-lg-0">
-        <MDBNavbarItem><a href="#" class="nav-link active">Home</a></MDBNavbarItem>
-        <MDBNavbarItem><a href="#" class="nav-link">Link</a></MDBNavbarItem>
+        <MDBNavbarItem>
+          <a href="#" class="nav-link" :class="{ active: activeSection === 'home' }">Home</a>
+        </MDBNavbarItem>
+
+        <MDBNavbarItem>
+          <a href="#about" class="nav-link" :class="{ active: activeSection === 'about' }">Tentang Kami</a>
+        </MDBNavbarItem>
+
         <MDBNavbarItem>
           <MDBDropdown class="nav-item" v-model="dropdown">
-            <MDBDropdownToggle tag="a" class="nav-link" @click="dropdown = !dropdown"> Dropdown </MDBDropdownToggle>
+            <MDBDropdownToggle tag="a" role="button" class="nav-link" @click.prevent="dropdown = !dropdown" :class="{ active: ['layanan', 'produk', 'warna'].includes(activeSection) }"> Lainnya </MDBDropdownToggle>
+
             <MDBDropdownMenu>
-              <MDBDropdownItem><a href="#" class="dropdown-item">Action</a></MDBDropdownItem>
-              <MDBDropdownItem><a href="#" class="dropdown-item">Another Action</a></MDBDropdownItem>
-              <MDBDropdownItem><a href="#" class="dropdown-item">Something else here</a></MDBDropdownItem>
+              <MDBDropdownItem>
+                <a href="#layanan" class="dropdown-item">Layanan</a>
+              </MDBDropdownItem>
+
+              <MDBDropdownItem>
+                <a href="#produk" class="dropdown-item">Produk</a>
+              </MDBDropdownItem>
+
+              <MDBDropdownItem>
+                <a href="#warna" class="dropdown-item">Katalog Warna</a>
+              </MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
         </MDBNavbarItem>
@@ -31,15 +47,40 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBNavbarNav,
 const collapse = ref(false);
 const dropdown = ref(false);
 const showNavbar = ref(true);
+const activeSection = ref("home");
+
 let lastScroll = 0;
 
-const handleScroll = () => {
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  showNavbar.value = currentScroll < lastScroll || currentScroll < 100;
-  lastScroll = currentScroll;
+const sections = ["home", "about", "layanan", "produk", "warna", "kontak"];
+
+const updateActiveSection = () => {
+  let current = "home";
+
+  for (const id of sections) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+
+    const offset = el.offsetTop - 160;
+    if (window.scrollY >= offset) current = id;
+  }
+
+  activeSection.value = current;
 };
 
-onMounted(() => window.addEventListener("scroll", handleScroll));
+const handleScroll = () => {
+  const currentScroll = window.scrollY;
+
+  showNavbar.value = currentScroll < lastScroll || currentScroll < 100;
+  lastScroll = currentScroll;
+
+  updateActiveSection();
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  updateActiveSection();
+});
+
 onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 </script>
 

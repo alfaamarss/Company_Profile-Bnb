@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 
 interface Color {
   name: string;
@@ -42,7 +42,6 @@ const colors: Color[] = [
   { name: "Dark Green", hex: "#006400" },
   { name: "Traffic Blue", hex: "#007ACC" },
   { name: "Sky Blue", hex: "#87CEEB" },
-  { name: "Ivory", hex: "#FFFFF0" },
   { name: "Light Grey", hex: "#D3D3D3" },
   { name: "Pastel Green", hex: "#77DD77" },
   { name: "Yellow Green", hex: "#9ACD32" },
@@ -50,56 +49,49 @@ const colors: Color[] = [
   { name: "Victoria", hex: "#8B5F65" },
   { name: "White", hex: "#FFFFFF" },
   { name: "Medium Grey", hex: "#A9A9A9" },
-  { name: "Light Blue", hex: "#ADD8E6" },
+
   { name: "Leaf Green", hex: "#228B22" },
   { name: "Traffic Red", hex: "#FF0000" },
   { name: "Blue Purple", hex: "#8A2BE2" },
 ];
 
-// Duplikasi untuk looping seamless
-const loopColors = [...colors, ...colors];
-
 const isMobile = ref(false);
 const wrapper = ref<HTMLDivElement | null>(null);
 let intervalId: any = null;
+
+// 🔥 FIX: Loop hanya di mobile
+const loopColors = computed(() => {
+  return isMobile.value ? [...colors, ...colors] : colors;
+});
 
 // Modal
 const selectedColor = ref<Color | null>(null);
 const openModal = (color: Color) => (selectedColor.value = color);
 const closeModal = () => (selectedColor.value = null);
 
-// Resize & cek mobile
+// Resize check
 const updateSize = () => {
   isMobile.value = window.innerWidth <= 768;
 };
 
-// Scroll ke kanan untuk auto-slide
+// Auto slide (mobile only)
 const autoSlide = () => {
   if (!isMobile.value || !wrapper.value) return;
+
   const container = wrapper.value;
-  const scrollStep = container.clientWidth / 2;
+  const scrollStep = container.clientWidth / 1.5;
+
   if (container.scrollLeft + scrollStep >= container.scrollWidth / 2) {
-    container.scrollLeft = 0; // reset untuk looping
+    container.scrollLeft = 0;
   } else {
     container.scrollLeft += scrollStep;
   }
 };
 
-// Tombol manual
-const next = () => {
-  if (!isMobile.value || !wrapper.value) return;
-  wrapper.value.scrollLeft += wrapper.value.clientWidth / 2;
-};
-
-const prev = () => {
-  if (!isMobile.value || !wrapper.value) return;
-  wrapper.value.scrollLeft -= wrapper.value.clientWidth / 2;
-};
-
 onMounted(() => {
   updateSize();
-  window.addEventListener("resize", updateSize);
 
+  window.addEventListener("resize", updateSize);
   intervalId = setInterval(autoSlide, 3000);
 });
 
@@ -211,6 +203,12 @@ onBeforeUnmount(() => {
   }
   .warna-slide {
     min-width: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .warna-wrapper {
+    scroll-snap-type: none;
   }
 }
 </style>

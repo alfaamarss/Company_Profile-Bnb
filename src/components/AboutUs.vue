@@ -1,5 +1,5 @@
 <template>
-  <section id="tentang-kami" class="py-5">
+  <section id="about" class="py-5">
     <div class="container">
       <h2 class="mb-5 text-center">Tentang Kami</h2>
 
@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 /* Section background */
-#tentang-kami {
+#about {
   padding: 2rem 0;
   background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
   color: white;
@@ -220,12 +220,12 @@ onBeforeUnmount(() => {
 
 /* ================= MOBILE COMPACT MODE ================= */
 @media (max-width: 768px) {
-  #tentang-kami {
+  #about {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
-  #tentang-kami h2 {
+  #about h2 {
     margin-bottom: 2rem;
     font-size: 1.8rem;
   }
