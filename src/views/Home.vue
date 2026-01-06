@@ -5,6 +5,7 @@
     <Services />
     <Products />
     <CatalogColor />
+    <CompanyPolicy ? />
     <Contact />
     <FloatingContact />
   </div>
@@ -18,4 +19,5 @@ import Services from "../components/Services.vue";
 import Products from "../components/Products.vue";
 import Contact from "../components/Contact.vue";
 import CatalogColor from "../components/CatalogColor.vue";
+import CompanyPolicy from "../components/CompanyPolicy.vue";
 </script>

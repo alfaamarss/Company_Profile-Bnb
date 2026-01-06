@@ -39,14 +39,14 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick } from "vue";
 
-import epoxyImg from "../assets/epoxy.png";
-import waterproofingImg from "../assets/waterproofing.png";
-import roadMarkingImg from "../assets/road-marking.png";
-import protectiveImg from "../assets/protective.png";
-import sportFlooringImg from "../assets/sport-flooring.png";
-import decorativeImg from "../assets/decorative.png";
-import floorHardenerImg from "../assets/floor-hardener.png";
-import membranImg from "../assets/membran.png";
+import epoxyImg from "../assets/service/epoxy.png";
+import waterproofingImg from "../assets/service/waterproofing.png";
+import roadMarkingImg from "../assets/service/road-marking.png";
+import protectiveImg from "../assets/service/protective.png";
+import sportFlooringImg from "../assets/service/sport-flooring.jpeg";
+import decorativeImg from "../assets/service/decorative.jpeg";
+import floorHardenerImg from "../assets/service/floor-hardener.png";
+import membranImg from "../assets/service/membran.png";
 
 type Layanan = { title: string; desc: string; img: string };
 

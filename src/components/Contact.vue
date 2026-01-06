@@ -25,7 +25,7 @@
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span><img :src="tokopedia" class="icon" /> Tokopedia</span>
-                <a href="#" class="btn btn-warning btn-sm">Kunjungi</a>
+                <a href="https://tk.tokopedia.com/ZS5mFRdQB/" class="btn btn-warning btn-sm">Kunjungi</a>
               </li>
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -50,7 +50,7 @@ import { onMounted } from "vue";
 
 import logo from "../assets/logo.png";
 import wa from "../assets/wa.png";
-import tokopedia from "../assets/tokopedia.jpeg";
+import tokopedia from "../assets/tokopedia.png";
 import shopee from "../assets/shopee.png";
 
 onMounted(() => {
@@ -97,6 +97,7 @@ onMounted(() => {
 .icon {
   width: 22px;
   height: 22px;
+  object-fit: contain;
 }
 
 /* ===================== LOGO ===================== */

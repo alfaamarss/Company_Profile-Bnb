@@ -33,9 +33,12 @@ import sportFlooringImg from "../assets/sport-flooring.png";
 import decorativeImg from "../assets/decorative.png";
 import floorHardenerImg from "../assets/floor-hardener.png";
 import membranImg from "../assets/membran.png";
+import Epoxy1 from "../assets/product/Epoxy1.jpeg";
+import Epoxy2 from "../assets/produk/epoxy2.jpg";
+import Epoxy3 from "../assets/produk/epoxy3.jpg";
 
 const produkList = [
-  { title: "Jasa Pengecatan Lantai Epoxy", desc: "Lantai kuat dan tahan lama", img: epoxyImg },
+  { title: "Jasa Pengecatan Lantai Epoxy", desc: "Lantai kuat dan tahan lama", img: Epoxy1 },
   { title: "Jasa Waterproofing", desc: "Lindungi bangunan dari air", img: waterproofingImg },
   { title: "Jasa Road Line Marking", desc: "Tanda batas lantai dan area", img: roadMarkingImg },
   { title: "Jasa Protective Coating", desc: "Perlindungan permukaan logam/non-logam", img: protectiveImg },

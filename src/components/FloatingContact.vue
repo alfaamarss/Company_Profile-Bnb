@@ -32,7 +32,7 @@
 import { ref } from "vue";
 import logo from "../assets/logo.png";
 import wa from "../assets/wa.png";
-import tokopedia from "../assets/tokopedia.jpeg";
+import tokopedia from "../assets/tokopedia.png";
 import shopee from "../assets/shopee.png";
 
 const open = ref(false);

@@ -1,7 +1,7 @@
 <template>
   <MDBNavbar expand="lg" container class="navbar-scroll" :class="{ 'navbar-hidden': !showNavbar }">
     <MDBNavbarBrand>
-      <a href="#home" class="navbar-brand fw-bold">CV. Berkah Doa Bunda</a>
+      <a href="#" class="navbar-brand fw-bold" @click.prevent="scrollToSection('home')">CV. Berkah Doa Bunda</a>
     </MDBNavbarBrand>
 
     <MDBNavbarToggler @click="collapse = !collapse" />
@@ -9,28 +9,32 @@
     <MDBCollapse v-model="collapse">
       <MDBNavbarNav class="d-flex w-100 justify-content-end mb-2 mb-lg-0">
         <MDBNavbarItem>
-          <a href="#" class="nav-link" :class="{ active: activeSection === 'home' }">Home</a>
+          <a href="#" class="nav-link" :class="{ active: activeSection === 'home' }" @click.prevent="scrollToSection('home')">Home</a>
         </MDBNavbarItem>
 
         <MDBNavbarItem>
-          <a href="#about" class="nav-link" :class="{ active: activeSection === 'about' }">Tentang Kami</a>
+          <a href="#" class="nav-link" :class="{ active: activeSection === 'about' }" @click.prevent="scrollToSection('about')">Tentang Kami</a>
         </MDBNavbarItem>
 
         <MDBNavbarItem>
           <MDBDropdown class="nav-item" v-model="dropdown">
-            <MDBDropdownToggle tag="a" role="button" class="nav-link" @click.prevent="dropdown = !dropdown" :class="{ active: ['layanan', 'produk', 'warna'].includes(activeSection) }"> Lainnya </MDBDropdownToggle>
+            <MDBDropdownToggle tag="a" role="button" class="nav-link" @click.prevent="dropdown = !dropdown" :class="{ active: ['layanan', 'produk', 'policySection', 'warna'].includes(activeSection) }"> Lainnya </MDBDropdownToggle>
 
             <MDBDropdownMenu>
               <MDBDropdownItem>
-                <a href="#layanan" class="dropdown-item">Layanan</a>
+                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('layanan')">Layanan</a>
               </MDBDropdownItem>
 
               <MDBDropdownItem>
-                <a href="#produk" class="dropdown-item">Produk</a>
+                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('produk')">Produk</a>
               </MDBDropdownItem>
 
               <MDBDropdownItem>
-                <a href="#warna" class="dropdown-item">Katalog Warna</a>
+                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('warna')">Katalog Warna</a>
+              </MDBDropdownItem>
+
+              <MDBDropdownItem>
+                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('kebijakan')">Kebijakan Perusahaan</a>
               </MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
@@ -50,38 +54,75 @@ const showNavbar = ref(true);
 const activeSection = ref("home");
 
 let lastScroll = 0;
+let observer: IntersectionObserver;
 
-const sections = ["home", "about", "layanan", "produk", "warna", "kontak"];
+const sections = ["home", "about", "layanan", "produk", "warna", "kebijakan"];
 
-const updateActiveSection = () => {
-  let current = "home";
-
-  for (const id of sections) {
+// ================= SCROLL TO SECTION =================
+const scrollToSection = (id: string) => {
+  if (id === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    activeSection.value = "home";
+  } else {
     const el = document.getElementById(id);
-    if (!el) continue;
+    if (!el) return;
 
-    const offset = el.offsetTop - 160;
-    if (window.scrollY >= offset) current = id;
+    const navbar = document.querySelector(".navbar-scroll") as HTMLElement;
+    const navbarHeight = navbar?.offsetHeight || 0;
+    const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight + 2;
+
+    window.scrollTo({ top, behavior: "smooth" });
   }
 
-  activeSection.value = current;
+  collapse.value = false;
+  dropdown.value = false;
 };
 
+// ================= HIDE / SHOW NAVBAR =================
 const handleScroll = () => {
   const currentScroll = window.scrollY;
 
-  showNavbar.value = currentScroll < lastScroll || currentScroll < 100;
+  showNavbar.value = currentScroll < lastScroll || currentScroll < 80;
   lastScroll = currentScroll;
 
-  updateActiveSection();
+  if (currentScroll < 100) {
+    activeSection.value = "home";
+  }
 };
 
+// ================= ACTIVE SECTION TRACKER =================
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
-  updateActiveSection();
+
+  const navbar = document.querySelector(".navbar-scroll") as HTMLElement;
+  const navbarHeight = navbar?.offsetHeight || 0;
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.filter((e) => e.isIntersecting);
+      if (!visible.length) return;
+
+      const topMost = visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+      activeSection.value = topMost.target.id;
+    },
+    {
+      root: null,
+      rootMargin: `-${navbarHeight + 10}px 0px -60% 0px`,
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
 });
 
-onUnmounted(() => window.removeEventListener("scroll", handleScroll));
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+  if (observer) observer.disconnect();
+});
 </script>
 
 <style scoped>
