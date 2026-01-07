@@ -1,14 +1,12 @@
 <template>
   <Navbar />
-  <Home />
+  <router-view />
   <Footer />
 </template>
 
 <script setup lang="ts">
-import Carousel from "./components/Carousel.vue";
-import Footer from "./components/Footer.vue";
 import Navbar from "./components/Navbar.vue";
-import Home from "./views/Home.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <style>

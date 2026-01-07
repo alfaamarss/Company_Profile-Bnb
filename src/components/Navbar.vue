@@ -1,40 +1,40 @@
 <template>
   <MDBNavbar expand="lg" container class="navbar-scroll" :class="{ 'navbar-hidden': !showNavbar }">
     <MDBNavbarBrand>
-      <a href="#" class="navbar-brand fw-bold" @click.prevent="scrollToSection('home')">CV. Berkah Doa Bunda</a>
+      <router-link to="/" class="navbar-brand fw-bold"> CV. Berkah Doa Bunda </router-link>
     </MDBNavbarBrand>
 
     <MDBNavbarToggler @click="collapse = !collapse" />
 
     <MDBCollapse v-model="collapse">
       <MDBNavbarNav class="d-flex w-100 justify-content-end mb-2 mb-lg-0">
+        <!-- HOME -->
         <MDBNavbarItem>
-          <a href="#" class="nav-link" :class="{ active: activeSection === 'home' }" @click.prevent="scrollToSection('home')">Home</a>
+          <router-link to="/" class="nav-link" :class="{ active: route.name === 'home' }"> Home </router-link>
         </MDBNavbarItem>
 
+        <!-- ABOUT -->
         <MDBNavbarItem>
-          <a href="#" class="nav-link" :class="{ active: activeSection === 'about' }" @click.prevent="scrollToSection('about')">Tentang Kami</a>
+          <router-link to="/about" class="nav-link" :class="{ active: route.name === 'about' }"> Tentang Kami </router-link>
         </MDBNavbarItem>
 
+        <!-- DROPDOWN -->
         <MDBNavbarItem>
           <MDBDropdown class="nav-item" v-model="dropdown">
-            <MDBDropdownToggle tag="a" role="button" class="nav-link" @click.prevent="dropdown = !dropdown" :class="{ active: ['layanan', 'produk', 'policySection', 'warna'].includes(activeSection) }"> Lainnya </MDBDropdownToggle>
+            <MDBDropdownToggle tag="a" role="button" class="nav-link" href="#" @click.prevent="dropdown = !dropdown" :class="{ active: isHomeSectionActive }"> Lainnya </MDBDropdownToggle>
 
             <MDBDropdownMenu>
               <MDBDropdownItem>
-                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('layanan')">Layanan</a>
+                <a class="dropdown-item" href="#" @click.prevent="goSection('layanan')">Layanan</a>
               </MDBDropdownItem>
-
               <MDBDropdownItem>
-                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('produk')">Produk</a>
+                <a class="dropdown-item" href="#" @click.prevent="goSection('produk')">Produk</a>
               </MDBDropdownItem>
-
               <MDBDropdownItem>
-                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('warna')">Katalog Warna</a>
+                <a class="dropdown-item" href="#" @click.prevent="goSection('warna')">Katalog Warna</a>
               </MDBDropdownItem>
-
               <MDBDropdownItem>
-                <a href="#" class="dropdown-item" @click.prevent="scrollToSection('kebijakan')">Kebijakan Perusahaan</a>
+                <a class="dropdown-item" href="#" @click.prevent="goSection('kebijakan')">Kebijakan</a>
               </MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
@@ -45,83 +45,75 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBNavbarNav, MDBNavbarItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdb-vue-ui-kit";
+
+const router = useRouter();
+const route = useRoute();
 
 const collapse = ref(false);
 const dropdown = ref(false);
 const showNavbar = ref(true);
-const activeSection = ref("home");
+const activeSection = ref<string | null>(null);
 
 let lastScroll = 0;
-let observer: IntersectionObserver;
+let observer: IntersectionObserver | null = null;
 
-const sections = ["home", "about", "layanan", "produk", "warna", "kebijakan"];
+// ================= SCROLL HANDLER =================
+const handleScroll = () => {
+  const current = window.scrollY;
+  showNavbar.value = current < lastScroll || current < 80;
+  lastScroll = current;
 
-// ================= SCROLL TO SECTION =================
-const scrollToSection = (id: string) => {
-  if (id === "home") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    activeSection.value = "home";
-  } else {
-    const el = document.getElementById(id);
-    if (!el) return;
+  if (current < 80) activeSection.value = null;
+};
 
-    const navbar = document.querySelector(".navbar-scroll") as HTMLElement;
-    const navbarHeight = navbar?.offsetHeight || 0;
-    const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight + 2;
-
-    window.scrollTo({ top, behavior: "smooth" });
+// ================= ROUTE + SCROLL =================
+const goSection = async (id: string) => {
+  if (route.name !== "home") {
+    await router.push("/");
+    await new Promise((r) => setTimeout(r, 120));
   }
+
+  document.getElementById(id)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 
   collapse.value = false;
   dropdown.value = false;
 };
 
-// ================= HIDE / SHOW NAVBAR =================
-const handleScroll = () => {
-  const currentScroll = window.scrollY;
+// ================= ACTIVE DROPDOWN =================
+const isHomeSectionActive = computed(() => route.name === "home" && activeSection.value !== null);
 
-  showNavbar.value = currentScroll < lastScroll || currentScroll < 80;
-  lastScroll = currentScroll;
-
-  if (currentScroll < 100) {
-    activeSection.value = "home";
-  }
-};
-
-// ================= ACTIVE SECTION TRACKER =================
+// ================= OBSERVER =================
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
 
-  const navbar = document.querySelector(".navbar-scroll") as HTMLElement;
-  const navbarHeight = navbar?.offsetHeight || 0;
+  if (!("IntersectionObserver" in window)) return;
 
   observer = new IntersectionObserver(
     (entries) => {
       const visible = entries.filter((e) => e.isIntersecting);
       if (!visible.length) return;
-
-      const topMost = visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-
-      activeSection.value = topMost.target.id;
+      activeSection.value = visible[0].target.id;
     },
     {
-      root: null,
-      rootMargin: `-${navbarHeight + 10}px 0px -60% 0px`,
-      threshold: 0,
+      rootMargin: "-80px 0px -60% 0px",
     }
   );
 
-  sections.forEach((id) => {
+  ["layanan", "produk", "warna", "kebijakan"].forEach((id) => {
     const el = document.getElementById(id);
-    if (el) observer.observe(el);
+    if (el && observer) observer.observe(el);
   });
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
-  if (observer) observer.disconnect();
+  observer?.disconnect();
 });
 </script>
 

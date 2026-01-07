@@ -2,12 +2,8 @@
   <div>
     <HeroSection />
     <AboutUs />
-    <Services />
-    <Products />
-    <CatalogColor />
-    <CompanyPolicy />
-    <Contact />
     <FloatingContact />
+    <WhyUs />
   </div>
 </template>
 
@@ -20,4 +16,5 @@ import Products from "../components/Products.vue";
 import Contact from "../components/Contact.vue";
 import CatalogColor from "../components/CatalogColor.vue";
 import CompanyPolicy from "../components/CompanyPolicy.vue";
+import WhyUs from "../components/WhyUs.vue";
 </script>
