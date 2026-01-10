@@ -46,7 +46,7 @@ interface Produk {
 
 /* ===== IMAGES ===== */
 import Epoxy1 from "../assets/product/Epoxy1.jpeg";
-import Epoxy3 from "../assets/product/epoxy3.jpeg";
+import Epoxy3 from "../assets/product/Epoxy3.jpeg";
 
 import waterproofingImg from "../assets/waterproofing.png";
 import roadMarkingImg from "../assets/road-marking.png";

@@ -1,167 +1,219 @@
 <template>
-  <MDBNavbar expand="lg" container class="navbar-scroll" :class="{ 'navbar-hidden': !showNavbar }">
-    <MDBNavbarBrand>
-      <router-link to="/" class="navbar-brand fw-bold"> CV. Berkah Doa Bunda </router-link>
-    </MDBNavbarBrand>
+  <nav class="navbar navbar-expand-lg custom-navbar" :class="{ 'navbar-hidden': !showNavbar }">
+    <div class="container navbar-inner">
+      <!-- BRAND -->
+      <router-link to="/" class="navbar-brand d-flex align-items-center gap-2">
+        <img src="/logo.png" alt="Logo CV Berkah Doa Bunda" class="brand-logo" />
+        <span class="brand-text">CV. Berkah Doa Bunda</span>
+      </router-link>
 
-    <MDBNavbarToggler @click="collapse = !collapse" />
+      <!-- TOGGLER -->
+      <button class="navbar-toggler" type="button" @click="collapse = !collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <MDBCollapse v-model="collapse">
-      <MDBNavbarNav class="d-flex w-100 justify-content-end mb-2 mb-lg-0">
-        <!-- HOME -->
-        <MDBNavbarItem>
-          <router-link to="/" class="nav-link" :class="{ active: route.name === 'home' }"> Home </router-link>
-        </MDBNavbarItem>
+      <!-- MENU -->
+      <div class="collapse navbar-collapse d-flex justify-content-center" :class="{ show: collapse }">
+        <ul class="navbar-nav gap-lg-3 align-items-lg-center mx-auto">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" :class="{ active: route.name === 'home' }" @click="closeAll">Home</router-link>
+          </li>
 
-        <!-- ABOUT -->
-        <MDBNavbarItem>
-          <router-link to="/about" class="nav-link" :class="{ active: route.name === 'about' }"> Tentang Kami </router-link>
-        </MDBNavbarItem>
+          <li class="nav-item">
+            <router-link to="/about" class="nav-link" :class="{ active: route.name === 'about' }" @click="closeAll">Tentang Kami</router-link>
+          </li>
 
-        <!-- DROPDOWN -->
-        <MDBNavbarItem>
-          <MDBDropdown class="nav-item" v-model="dropdown">
-            <MDBDropdownToggle tag="a" role="button" class="nav-link" href="#" @click.prevent="dropdown = !dropdown" :class="{ active: isHomeSectionActive }"> Lainnya </MDBDropdownToggle>
+          <!-- DROPDOWN -->
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" @click.prevent="dropdown = !dropdown">Lainnya</a>
+            <ul class="dropdown-menu glass-dropdown" :class="{ show: dropdown }">
+              <li><a class="dropdown-item" @click="goSection('layanan')">Layanan</a></li>
+              <li><a class="dropdown-item" @click="goSection('produk')">Produk</a></li>
+              <li><a class="dropdown-item" @click="goSection('warna')">Katalog Warna</a></li>
+              <li><a class="dropdown-item" @click="goSection('kebijakan')">Kebijakan</a></li>
+            </ul>
+          </li>
+        </ul>
 
-            <MDBDropdownMenu>
-              <MDBDropdownItem>
-                <a class="dropdown-item" href="#" @click.prevent="goSection('layanan')">Layanan</a>
-              </MDBDropdownItem>
-              <MDBDropdownItem>
-                <a class="dropdown-item" href="#" @click.prevent="goSection('produk')">Produk</a>
-              </MDBDropdownItem>
-              <MDBDropdownItem>
-                <a class="dropdown-item" href="#" @click.prevent="goSection('warna')">Katalog Warna</a>
-              </MDBDropdownItem>
-              <MDBDropdownItem>
-                <a class="dropdown-item" href="#" @click.prevent="goSection('kebijakan')">Kebijakan</a>
-              </MDBDropdownItem>
-            </MDBDropdownMenu>
-          </MDBDropdown>
-        </MDBNavbarItem>
-      </MDBNavbarNav>
-    </MDBCollapse>
-  </MDBNavbar>
+        <!-- RIGHT EMAIL -->
+        <div class="navbar-contact d-none d-lg-flex">
+          <a href="mailto:info@berkahdoabunda.co.id" class="email-link">info@berkahdoabunda.co.id</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBNavbarNav, MDBNavbarItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdb-vue-ui-kit";
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-const router = useRouter();
 const route = useRoute();
+const router = useRouter();
 
 const collapse = ref(false);
 const dropdown = ref(false);
 const showNavbar = ref(true);
-const activeSection = ref<string | null>(null);
 
 let lastScroll = 0;
-let observer: IntersectionObserver | null = null;
 
-// ================= SCROLL HANDLER =================
-const handleScroll = () => {
-  const current = window.scrollY;
-  showNavbar.value = current < lastScroll || current < 80;
-  lastScroll = current;
-
-  if (current < 80) activeSection.value = null;
-};
-
-// ================= ROUTE + SCROLL =================
-const goSection = async (id: string) => {
-  if (route.name !== "home") {
-    await router.push("/");
-    await new Promise((r) => setTimeout(r, 120));
-  }
-
-  document.getElementById(id)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-
+const closeAll = () => {
   collapse.value = false;
   dropdown.value = false;
 };
 
-// ================= ACTIVE DROPDOWN =================
-const isHomeSectionActive = computed(() => route.name === "home" && activeSection.value !== null);
+const goSection = async (id: string) => {
+  closeAll();
+  if (route.name !== "home") {
+    await router.push({ name: "home" });
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+  } else {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
 
-// ================= OBSERVER =================
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
+const handleScroll = () => {
+  const current = window.scrollY;
+  if (current <= 0) {
+    showNavbar.value = true;
+    return;
+  }
+  if (current > lastScroll && current > 80) {
+    showNavbar.value = false;
+    closeAll();
+  } else {
+    showNavbar.value = true;
+  }
+  lastScroll = current;
+};
 
-  if (!("IntersectionObserver" in window)) return;
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries.filter((e) => e.isIntersecting);
-      if (!visible.length) return;
-      activeSection.value = visible[0].target.id;
-    },
-    {
-      rootMargin: "-80px 0px -60% 0px",
-    }
-  );
-
-  ["layanan", "produk", "warna", "kebijakan"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el && observer) observer.observe(el);
-  });
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-  observer?.disconnect();
-});
+onMounted(() => window.addEventListener("scroll", handleScroll));
+onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 </script>
 
 <style scoped>
-.navbar-scroll {
+/* NAVBAR BASE */
+.custom-navbar {
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
+  padding: 0;
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  transition: transform 0.3s ease-in-out, background 0.3s ease;
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
-  color: white;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.35s ease;
 }
 
-.navbar-scroll .nav-link,
-.navbar-scroll .navbar-brand {
-  color: white;
-}
-
-.navbar-scroll .nav-link:hover,
-.navbar-scroll .nav-link.active {
-  color: #ffd700; /* aksen cat/epoxy */
-}
-
-/* Hidden saat scroll */
 .navbar-hidden {
   transform: translateY(-100%);
 }
 
-/* Glass Dropdown */
+/* INNER */
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* brand kiri, menu tengah, email kanan */
+  min-height: 70px;
+  width: 100%;
+}
+
+/* BRAND */
+.brand-text {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+.brand-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* MENU */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  margin: 0 auto; /* presisi tengah */
+}
+
+.nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #fff650f1;
+}
+
+/* RIGHT EMAIL */
+.navbar-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 32px;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 25px rgba(13, 110, 253, 0.25);
+
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.navbar-contact a.email-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.navbar-contact a.email-link:hover {
+  color: #fff650f1;
+  text-decoration: underline;
+}
+
+/* DROPDOWN */
 .dropdown-menu {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  margin-top: 0.5rem;
+  border: none;
+}
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-radius: 16px;
+  padding: 10px;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  animation: glassFade 0.25s ease;
+}
+.glass-dropdown .dropdown-item {
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+.glass-dropdown .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.45);
+  color: #fff650f1;
+  transform: translateX(4px);
 }
 
-.dropdown-item {
-  color: white;
-  transition: background 0.3s, color 0.3s;
-}
-
-.dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: #ffd700;
+@keyframes glassFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 </style>

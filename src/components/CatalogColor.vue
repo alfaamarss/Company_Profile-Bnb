@@ -3,6 +3,18 @@
     <div class="container">
       <h2 class="mb-5 text-center text-white">Katalog Warna</h2>
 
+      <!-- Color Reference Generator -->
+      <div class="custom-color-generator mb-5 text-center">
+        <h5 class="mb-3">Buat Referensi Warna</h5>
+        <input type="color" v-model="customHex" class="color-picker mb-3" />
+
+        <!-- Card Preview -->
+        <div class="color-card text-center mx-auto p-3 rounded shadow custom-card" @click="openModal({ hex: customHex, name: 'Custom Color' })">
+          <div class="color-box mb-2 mx-auto rounded" :style="{ backgroundColor: customHex }"></div>
+          <span>{{ customHex }}</span>
+        </div>
+      </div>
+
       <div class="warna-wrapper" ref="wrapper">
         <div class="warna-track">
           <div class="warna-slide" v-for="(color, index) in loopColors" :key="index">
@@ -35,6 +47,7 @@ interface Color {
   hex: string;
 }
 
+// Default Colors
 const colors: Color[] = [
   { name: "Alabaster", hex: "#FAFAFA" },
   { name: "Grey", hex: "#808080" },
@@ -49,7 +62,6 @@ const colors: Color[] = [
   { name: "Victoria", hex: "#8B5F65" },
   { name: "White", hex: "#FFFFFF" },
   { name: "Medium Grey", hex: "#A9A9A9" },
-
   { name: "Leaf Green", hex: "#228B22" },
   { name: "Traffic Red", hex: "#FF0000" },
   { name: "Blue Purple", hex: "#8A2BE2" },
@@ -59,7 +71,7 @@ const isMobile = ref(false);
 const wrapper = ref<HTMLDivElement | null>(null);
 let intervalId: any = null;
 
-// 🔥 FIX: Loop hanya di mobile
+// Loop Colors untuk mobile
 const loopColors = computed(() => {
   return isMobile.value ? [...colors, ...colors] : colors;
 });
@@ -88,9 +100,11 @@ const autoSlide = () => {
   }
 };
 
+// Custom color for reference only
+const customHex = ref("#ff0000");
+
 onMounted(() => {
   updateSize();
-
   window.addEventListener("resize", updateSize);
   intervalId = setInterval(autoSlide, 3000);
 });
@@ -102,14 +116,12 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* Section background biru gradient */
 #warna {
   padding: 2rem 0;
   background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
   color: white;
 }
 
-/* Wrapper & Track */
 .warna-wrapper {
   position: relative;
   overflow-x: auto;
@@ -129,11 +141,10 @@ onBeforeUnmount(() => {
   scroll-snap-align: start;
 }
 
-/* Glass Card Effect */
 .color-card {
-  background: rgba(255, 255, 255, 0.15); /* semi-transparent */
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari */
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -150,7 +161,6 @@ onBeforeUnmount(() => {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Color Box */
 .color-box {
   width: 80px;
   height: 80px;
@@ -158,7 +168,7 @@ onBeforeUnmount(() => {
   border-radius: 12px;
   margin: 0 auto 0.5rem auto;
 }
-/* Modal Glass Effect */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -170,28 +180,47 @@ onBeforeUnmount(() => {
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.15); /* semi-transparent */
-  backdrop-filter: blur(10px); /* efek blur glass */
-  -webkit-backdrop-filter: blur(10px); /* untuk Safari */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 2rem;
   border-radius: 16px;
   max-width: 400px;
   width: 90%;
   text-align: center;
-  color: white; /* teks putih biar terlihat di atas glass */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* shadow untuk pop */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* garis tipis di pinggir */
+  color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .modal-color-box {
   width: 120px;
   height: 120px;
   margin: 1rem auto;
-  border: 3px solid #fff; /* biar terlihat di glass */
+  border: 3px solid #fff;
   border-radius: 12px;
 }
 
-/* Desktop grid */
+/* Color generator */
+.custom-color-generator .color-picker {
+  width: 80px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-color-generator .preview {
+  width: 100px;
+  height: 50px;
+  margin: 0 auto 0.5rem auto;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
 @media (min-width: 769px) {
   .warna-wrapper {
     overflow-x: visible;
@@ -205,10 +234,36 @@ onBeforeUnmount(() => {
     min-width: auto;
   }
 }
-
 @media (min-width: 769px) {
   .warna-wrapper {
     scroll-snap-type: none;
   }
+}
+
+.custom-color-generator .custom-card {
+  width: 140px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+}
+
+.custom-color-generator .custom-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-color-generator .color-box {
+  width: 100px;
+  height: 100px;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  margin: 0 auto 0.5rem auto;
+}
+
+.custom-color-generator .color-picker {
+  width: 80px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
 }
 </style>
