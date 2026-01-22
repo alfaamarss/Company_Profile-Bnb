@@ -84,7 +84,7 @@ onMounted(() => {
         entry.target.classList.toggle("active", entry.isIntersecting);
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.3 },
   );
 
   if (aboutSection.value) observer.observe(aboutSection.value);
@@ -99,8 +99,9 @@ onBeforeUnmount(() => {
 /* Section background */
 #about {
   padding: 2rem 0;
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
-  color: white;
+  background: linear-gradient(135deg, rgba(15, 61, 102, 0.95), rgba(27, 95, 167, 0.95));
+
+  color: rgb(255, 255, 255);
 }
 
 /* Card glass effect */
@@ -157,7 +158,9 @@ onBeforeUnmount(() => {
 /* Slide image */
 .slide-image {
   width: 100%;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
   border-radius: 16px;
 }
 

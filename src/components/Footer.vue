@@ -69,7 +69,7 @@ onMounted(() => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     footerSections.forEach((el) => observer.observe(el));
@@ -80,7 +80,7 @@ onMounted(() => {
 <style scoped>
 .site-footer {
   position: relative;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #5dade2 100%);
+  background: linear-gradient(135deg, #5dade2 0%, #2a5298 50%, #5dade2 100%);
   color: white;
   padding-top: 4rem;
   padding-bottom: 3rem;

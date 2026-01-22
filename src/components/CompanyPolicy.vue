@@ -45,7 +45,7 @@ onMounted(() => {
         entry.target.classList.toggle("active", entry.isIntersecting);
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.3 },
   );
 
   if (policySection.value) observer.observe(policySection.value);
@@ -54,7 +54,7 @@ onMounted(() => {
 
 <style scoped>
 .kebijakan {
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
+  background: linear-gradient(135deg, #5dade2, #1e3c72, #2a5298);
   color: white;
 }
 

@@ -98,91 +98,152 @@ const prevImage = () => {
 
 <style scoped>
 #produk {
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
+  background: linear-gradient(135deg, #5dade2, #1e3c72, #2a5298);
   color: white;
 }
 
-/* SCROLL */
+/* ===== TITLE ===== */
+#produk h2 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== SCROLL WRAPPER ===== */
 .produk-scroll-wrapper {
-  display: flex;
   overflow-x: auto;
-  gap: 1rem;
-  padding-bottom: 1rem;
+  padding: 8px 0 16px;
   scrollbar-width: none;
 }
 .produk-scroll-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-/* CARD */
+.produk-scroll {
+  display: flex;
+  gap: 20px;
+  padding: 4px 2px;
+}
+
+/* ===== CARD ===== */
 .produk-card {
-  min-width: 180px;
-  padding: 1rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  max-width: 200px;
+  padding: 14px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
   color: white;
   cursor: pointer;
-  transition: 0.3s ease;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .produk-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  transform: translateY(-8px);
+  box-shadow:
+    0 18px 35px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
+/* IMAGE */
 .produk-card img {
-  height: 100px;
   width: 100%;
+  height: 120px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.produk-card h6 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .produk-card p {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0;
 }
 
-/* ===== MODAL ===== */
+/* ===== MODAL OVERLAY ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(8, 15, 30, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  padding: 16px;
 }
 
+/* ===== MODAL CONTENT ===== */
 .modal-content {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 420px;
-  width: 90%;
-  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  padding: 24px;
+
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
   color: white;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+
   animation: modalIn 0.35s ease;
 }
 
+/* MODAL IMAGE */
+.modal-content img {
+  max-height: 240px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* MODAL TEXT */
+.modal-content h5 {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.modal-content p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* NAV IMAGE */
+.modal-content .btn {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ===== ANIMATION ===== */
 @keyframes modalIn {
   from {
-    transform: scale(0.8);
+    transform: translateY(20px) scale(0.96);
     opacity: 0;
   }
   to {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
-}
-
-.produk-card img {
-  width: 100%;
-  height: 110px; /* FIX HEIGHT */
-  object-fit: cover; /* POTONG RAPI */
-  border-radius: 12px;
 }
 </style>

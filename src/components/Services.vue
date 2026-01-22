@@ -97,7 +97,7 @@ onMounted(async () => {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.2 },
   );
 
   slidesRefs.value.forEach((el) => observer.observe(el));
@@ -112,7 +112,8 @@ const closeModal = () => (selectedLayanan.value = null);
 #layanan {
   overflow-x: hidden;
   padding: 2rem 0;
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2);
+  background: linear-gradient(135deg, #5dade2, #1e3c72, #2a5298);
+
   color: white;
 }
 
@@ -125,7 +126,10 @@ const closeModal = () => (selectedLayanan.value = null);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    border 0.3s;
   color: white;
 }
 

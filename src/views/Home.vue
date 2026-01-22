@@ -1,8 +1,12 @@
 <template>
   <div>
     <HeroSection />
+    <Value />
     <AboutUs />
+    <CompanyStats />
     <Services />
+    <Proyek />
+
     <Products />
     <CatalogColor />
     <CompanyPolicy />
@@ -20,4 +24,7 @@ import Products from "../components/Products.vue";
 import Contact from "../components/Contact.vue";
 import CatalogColor from "../components/CatalogColor.vue";
 import CompanyPolicy from "../components/CompanyPolicy.vue";
+import Value from "../components/Value.vue";
+import CompanyStats from "../components/CompanyStats.vue";
+import Proyek from "../components/Proyek.vue";
 </script>

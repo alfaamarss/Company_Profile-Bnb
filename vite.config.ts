@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import VueDevtools from "vite-plugin-vue-devtools";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,5 +8,5 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
-  plugins: [vue()],
+  plugins: [vue(), VueDevtools()],
 });
