@@ -303,19 +303,6 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   }
 
   /* dropdown JANGAN absolute di mobile */
-  .dropdown-menu {
-    position: static;
-    float: none;
-    transform: none !important;
-
-    margin-top: 10px;
-    padding: 12px;
-
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    box-shadow: none;
-  }
 
   .dropdown-menu.show {
     display: block;
