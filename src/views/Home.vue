@@ -1,13 +1,13 @@
 <template>
   <div>
     <HeroSection />
-    <Value />
     <AboutUs />
+    <Value />
     <CompanyStats />
-    <Services />
     <Proyek />
-
     <Products />
+    <Services />
+
     <CatalogColor />
     <CompanyPolicy />
     <Contact />

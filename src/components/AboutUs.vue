@@ -98,30 +98,31 @@ onBeforeUnmount(() => {
 <style scoped>
 /* Section background */
 #about {
-  padding: 2rem 0;
-  background: linear-gradient(135deg, rgba(15, 61, 102, 0.95), rgba(27, 95, 167, 0.95));
-
-  color: rgb(255, 255, 255);
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f0f6ff, #eef4fb);
+  color: #1e293b;
 }
 
 /* Card glass effect */
 .card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  color: white;
-}
-
-.card-body p {
-  line-height: 1.6;
-  color: white;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 30px rgba(30, 60, 114, 0.12);
+  color: #1e293b;
 }
 
 .card-title {
-  color: white;
+  color: #1e3c72;
+}
+
+.card-body p {
+  color: #334155;
+  line-height: 1.7;
+}
+#about h2 {
+  font-weight: 700;
+  color: #1e3c72;
 }
 
 /* ===== ANIMASI SCROLL ===== */
@@ -150,9 +151,8 @@ onBeforeUnmount(() => {
 }
 
 .about-slider {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px; /* agar slider juga terlihat rounded */
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(30, 60, 114, 0.15);
 }
 
 /* Slide image */

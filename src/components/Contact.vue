@@ -1,7 +1,7 @@
 <template>
-  <section id="kontak" class="py-5" style="background: linear-gradient(135deg, #1e3c72, #2a5298, #5dade2)">
+  <section id="kontak" class="kontak-section py-5">
     <div class="container">
-      <h2 class="mb-5 text-center text-white reveal-title">Kontak Kami</h2>
+      <h2 class="mb-5 text-center reveal-title">Kontak Kami</h2>
 
       <div class="glass-card mx-auto p-4 shadow-lg reveal">
         <div class="row align-items-center g-4">
@@ -9,12 +9,12 @@
           <div class="col-md-6">
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span class="d-flex align-items-center gap-2"> 📞 Telepon </span>
+                <span class="d-flex align-items-center gap-2">📞 Telepon</span>
                 <a href="tel:085212714789">0852-1271-4789</a>
               </li>
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span class="d-flex align-items-center gap-2"> ✉️ Email </span>
+                <span class="d-flex align-items-center gap-2">✉️ Email</span>
                 <a href="mailto:cv.berkahdoabunda@gmail.com"> cv.berkahdoabunda@gmail.com </a>
               </li>
 
@@ -25,7 +25,7 @@
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span><img :src="tokopedia" class="icon" /> Tokopedia</span>
-                <a href="https://tk.tokopedia.com/ZS5mFRdQB/" class="btn btn-warning btn-sm">Kunjungi</a>
+                <a href="https://tk.tokopedia.com/ZS5mFRdQB/" class="btn btn-warning btn-sm"> Kunjungi </a>
               </li>
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -62,7 +62,7 @@ onMounted(() => {
         }
       });
     },
-    { threshold: 0.25 }
+    { threshold: 0.25 },
   );
 
   document.querySelectorAll(".reveal, .reveal-title").forEach((el) => {
@@ -72,25 +72,62 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* ===================== SECTION ===================== */
+.kontak-section {
+  position: relative;
+  background: linear-gradient(135deg, #f0f6ff, #dbeafe);
+  overflow: hidden;
+}
+
+/* GARIS PEMISAH ATAS */
+.kontak-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, 80%);
+  height: 3px;
+  background: linear-gradient(90deg, #1e3c72, #5dade2);
+  border-radius: 999px;
+}
+
 /* ===================== GLASS CARD ===================== */
 .glass-card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(15px);
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+
+  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  color: #1e293b;
+
+  box-shadow:
+    0 20px 45px rgba(30, 60, 114, 0.18),
+    0 8px 18px rgba(0, 0, 0, 0.06);
 }
 
 /* ===================== LIST ===================== */
 .list-group-item {
   background: transparent;
   border: none;
-  color: white;
+  padding: 14px 0;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.list-group-item:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .list-group-item a {
-  color: white;
+  color: #1e3c72;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.list-group-item a:hover {
+  text-decoration: underline;
 }
 
 /* ===================== ICON ===================== */
@@ -100,24 +137,36 @@ onMounted(() => {
   object-fit: contain;
 }
 
+/* ===================== BUTTON ===================== */
+.btn {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  padding: 6px 14px;
+}
+
 /* ===================== LOGO ===================== */
 .logo {
-  max-height: 260px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  max-height: 240px;
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 12px;
+
+  box-shadow:
+    0 18px 35px rgba(30, 60, 114, 0.22),
+    0 6px 14px rgba(0, 0, 0, 0.08);
 }
 
 /* ===================== SCROLL ANIMATION ===================== */
 .reveal {
   opacity: 0;
-  transform: translateY(70px) scale(0.95);
-  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateY(60px) scale(0.96);
+  transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .reveal-title {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
 }
 
 .active {

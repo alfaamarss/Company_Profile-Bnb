@@ -59,17 +59,40 @@ import membranImg from "../assets/membran.png";
 /* ===== DATA ===== */
 const produkList: Produk[] = [
   {
-    title: "Jasa Pengecatan Lantai Epoxy",
-    desc: "Lantai kuat dan tahan lama",
+    title: "Pengecatan Lapangan Indoor & Outdoor",
+    desc: "Lapangan olahraga dengan standar profesional",
+    images: [sportFlooringImg],
+  },
+  {
+    title: "Pengecatan Pabrik & Gudang",
+    desc: "Lantai industri kuat, rapi, dan tahan lama",
     images: [Epoxy1, Epoxy3],
   },
-  { title: "Jasa Waterproofing", desc: "Lindungi bangunan dari air", images: [waterproofingImg] },
-  { title: "Jasa Road Line Marking", desc: "Tanda batas lantai dan area", images: [roadMarkingImg] },
-  { title: "Jasa Protective Coating", desc: "Perlindungan permukaan", images: [protectiveImg] },
-  { title: "Jasa Sport Flooring", desc: "Lapangan olahraga", images: [sportFlooringImg] },
-  { title: "Jasa Decorative Flooring", desc: "Hiasan lantai", images: [decorativeImg] },
-  { title: "Jasa Floor Hardener", desc: "Finishing beton", images: [floorHardenerImg] },
-  { title: "Jasa Membran Bakar", desc: "Anti bocor", images: [membranImg] },
+  {
+    title: "Pengecatan Marka Jalan / Road Marking",
+    desc: "Garis marka jelas dan tahan aus",
+    images: [roadMarkingImg],
+  },
+  {
+    title: "Pengecatan Jembatan",
+    desc: "Pelapisan pelindung struktur jembatan",
+    images: [protectiveImg],
+  },
+  {
+    title: "Pengecatan Protective Coating",
+    desc: "Perlindungan permukaan dari korosi & cuaca",
+    images: [protectiveImg],
+  },
+  {
+    title: "Pengecatan Waterproofing",
+    desc: "Solusi anti bocor untuk bangunan",
+    images: [waterproofingImg],
+  },
+  {
+    title: "Jasa Decorative Flooring",
+    desc: "Finishing lantai estetik & modern",
+    images: [decorativeImg],
+  },
 ];
 
 /* ===== MODAL ===== */

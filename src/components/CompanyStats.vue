@@ -123,8 +123,35 @@ const stats = [
 
 /* MOBILE */
 @media (max-width: 575px) {
+  .stats-section {
+    padding: 3rem 0;
+  }
+
+  .stat-card {
+    padding: 22px 14px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-icon {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 10px;
+  }
+
+  .stat-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
   .stat-value {
-    font-size: 2rem;
+    font-size: 1.9rem;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    line-height: 1.3;
   }
 }
 </style>

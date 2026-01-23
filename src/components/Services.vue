@@ -1,7 +1,7 @@
 <template>
   <section id="layanan" class="py-5">
     <div class="container">
-      <h2 class="mb-5 text-center text-white">Layanan Kami</h2>
+      <h2 class="mb-5 text-center">Layanan Kami</h2>
 
       <div class="layanan-wrapper" ref="wrapper">
         <div class="layanan-track" :style="mobileStyle">
@@ -111,32 +111,47 @@ const closeModal = () => (selectedLayanan.value = null);
 /* Section Layanan */
 #layanan {
   overflow-x: hidden;
-  padding: 2rem 0;
-  background: linear-gradient(135deg, #5dade2, #1e3c72, #2a5298);
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f0f6ff, #eaf1fb);
+  color: #1e293b;
+}
 
-  color: white;
+#layanan h2 {
+  color: #1e3c72;
+  font-weight: 700;
 }
 
 /* ===== CARD GLASS ===== */
 .card {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 28px rgba(30, 60, 114, 0.12);
   cursor: pointer;
   transition:
-    transform 0.3s,
-    box-shadow 0.3s,
-    border 0.3s;
-  color: white;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  color: #1e293b;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(30, 60, 114, 0.18);
 }
 
 .card:hover {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
   border-color: rgba(255, 255, 255, 0.35);
+}
+
+.card-title {
+  color: #1e3c72;
+}
+
+.card-text {
+  color: #475569;
+  font-size: 0.95rem;
 }
 
 .card img {
@@ -199,7 +214,7 @@ const closeModal = () => (selectedLayanan.value = null);
     border: none;
     font-size: 24px;
     font-weight: bold;
-    color: white;
+    color: rgb(64, 138, 217);
     backdrop-filter: blur(8px);
     background: rgba(255, 255, 255, 0.18);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
@@ -232,15 +247,15 @@ const closeModal = () => (selectedLayanan.value = null);
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
+  background: #ffffff;
+  color: #1e293b;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
   padding: 2rem;
   max-width: 400px;
   width: 90%;
   text-align: center;
-  color: white;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+
   transition: all 0.3s ease;
 }
 

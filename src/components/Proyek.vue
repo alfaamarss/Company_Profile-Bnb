@@ -24,7 +24,6 @@
             <!-- IMAGE -->
             <div class="project-img">
               <img :src="project.image" :alt="project.title" />
-              <span class="project-badge">Selesai</span>
             </div>
 
             <!-- CONTENT -->
@@ -52,10 +51,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import p1 from "../assets/proyek/Epoxy1.jpeg";
-import p2 from "../assets/proyek/decorative.png";
-import p3 from "../assets/proyek/epoxy.png";
-
+import p1 from "../assets/proyek/proyek1.jpeg";
+import p2 from "../assets/proyek/proyek2.jpeg";
+import p3 from "../assets/proyek//proyek3.jpeg";
+import p4 from "../assets/proyek/proyek4.jpeg";
 const proyek = [
   {
     title: "Epoxy Flooring Pabrik",
@@ -83,45 +82,74 @@ const proyek = [
     desc: "Pengerjaan floor hardener area gudang logistik.",
     location: "Tangerang",
     type: "Floor Hardener",
-    image: p3,
+    image: p4,
   },
 ];
 </script>
 
 <style scoped>
+/* ================= SECTION ================= */
 .project-section {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: linear-gradient(135deg, #f0f6ff, #eaf1fb);
   padding: 5rem 0;
+  color: #1e293b;
+}
+
+.project-section h3 {
+  color: #1e3c72;
+  font-weight: 700;
 }
 
 .project-subtitle {
   max-width: 600px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.85);
+  color: #475569;
   font-size: 0.95rem;
 }
 
-/* CARD */
+/* ================= SWIPER ================= */
+.project-swiper {
+  padding-bottom: 42px;
+}
+
+:deep(.swiper-slide) {
+  display: flex;
+  height: auto;
+}
+
+/* ================= CARD ================= */
 .project-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   height: 100%;
+
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  transition: all 0.35s ease;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 10px 25px rgba(30, 60, 114, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.04);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35);
+  transform: translateY(-8px);
+  box-shadow:
+    0 22px 45px rgba(30, 60, 114, 0.22),
+    0 10px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* IMAGE */
+/* ================= IMAGE ================= */
 .project-img {
   position: relative;
   height: 200px;
+  flex-shrink: 0;
   overflow: hidden;
 }
 
@@ -133,50 +161,58 @@ const proyek = [
 }
 
 .project-card:hover .project-img img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
-/* BADGE */
-.project-badge {
+/* OVERLAY HALUS */
+.project-img::after {
+  content: "";
   position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(40, 167, 69, 0.9);
-  padding: 6px 12px;
-  font-size: 0.75rem;
-  border-radius: 20px;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.25));
 }
 
-/* BODY */
+/* ================= BODY ================= */
 .project-body {
-  padding: 20px;
-  color: #fff;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-body h6 {
+  color: #1e3c72;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 .project-desc {
   font-size: 0.9rem;
-  margin-bottom: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 14px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
 }
 
+/* META STAY BAWAH */
 .project-meta {
+  margin-top: auto;
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   font-size: 0.8rem;
-  opacity: 0.9;
-}
-
-.project-swiper {
-  padding-bottom: 40px;
-}
-
-/* Pagination bullet */
-:deep(.swiper-pagination-bullet) {
-  background: rgba(255, 255, 255, 0.6);
-  opacity: 1;
-}
-
-:deep(.swiper-pagination-bullet-active) {
-  background: #ffffff;
+  color: #64748b;
 }
 </style>

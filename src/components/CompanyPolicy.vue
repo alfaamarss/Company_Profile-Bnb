@@ -54,22 +54,29 @@ onMounted(() => {
 
 <style scoped>
 .kebijakan {
-  background: linear-gradient(135deg, #5dade2, #1e3c72, #2a5298);
-  color: white;
+  background: linear-gradient(135deg, #f0f6ff, #dbeafe);
+  color: #1e293b;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  color: white;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  border: 1px solid rgba(30, 60, 114, 0.15);
+  box-shadow: 0 12px 28px rgba(30, 60, 114, 0.15);
 }
 
-.card-title,
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(30, 60, 114, 0.18);
+}
+
+.card-title {
+  color: #1e3c72;
+}
+
 .card-body p {
-  color: white;
+  color: #334155;
+  line-height: 1.7;
 }
 </style>
