@@ -10,7 +10,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="d-flex align-items-center gap-2">📞 Telepon</span>
-                <a href="tel:085212714789">0852-1271-4789</a>
+                <a href="tel:085212714789">0811-1185-2220</a>
               </li>
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -20,17 +20,12 @@
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span><img :src="wa" class="icon" /> WhatsApp</span>
-                <a href="https://wa.me/6285212714789" target="_blank" class="btn btn-success btn-sm"> Chat Sekarang </a>
+                <a href="https://wa.me/6281111852220" target="_blank" class="btn btn-success btn-sm"> Chat Sekarang </a>
               </li>
 
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span><img :src="tokopedia" class="icon" /> Tokopedia</span>
                 <a href="https://tk.tokopedia.com/ZS5mFRdQB/" class="btn btn-warning btn-sm"> Kunjungi </a>
-              </li>
-
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><img :src="shopee" class="icon" /> Shopee</span>
-                <a href="#" class="btn btn-danger btn-sm">Kunjungi</a>
               </li>
             </ul>
           </div>

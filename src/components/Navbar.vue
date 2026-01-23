@@ -38,7 +38,7 @@
 
           <!-- RIGHT EMAIL -->
           <div class="navbar-contact d-none d-lg-flex">
-            <a href="mailto:info@berkahdoabunda.co.id" class="email-link">info@berkahdoabunda.co.id</a>
+            <a href="mailto:cv.berkahdoabunda@gmail.com" class="email-link">cv.berkahdoabunda@gmail.com</a>
           </div>
         </div>
       </div>

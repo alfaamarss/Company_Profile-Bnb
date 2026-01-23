@@ -14,18 +14,46 @@
           <div class="d-flex flex-wrap align-items-start gap-5 mt-4">
             <!-- Kontak -->
             <ul class="list-unstyled mb-0 flex-shrink-0">
-              <li>📍 Tangerang, Indonesia</li>
-              <li>📧 info@berkahdoabunda.com</li>
-              <li>📞 +62 812 3456 7890</li>
+              <li>📍 depan smpn 2, Sukabakti, Kec. Curug, Kabupaten Tangerang, Banten 15810</li>
+              <li>📧 cv.berkahdoabunda@gmail.com</li>
             </ul>
 
             <!-- Sosial Media -->
             <div class="d-flex flex-column gap-2 flex-shrink-0">
               <span class="fw-semibold">Sosial Media:</span>
+
               <div class="social-links d-flex gap-3">
-                <a href="#" class="social-link">Facebook</a>
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">LinkedIn</a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1DE5NAHN2t/?mibextid=wwXIfr" class="social-link" aria-label="Facebook">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2V9.8c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.8h2.2l-.4 2.9h-1.8v7A10 10 0 0 0 22 12z" />
+                  </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/bdb_catepoxy?igsh=YXkxbzg5enlndG9p&utm_source=qr" class="social-link" aria-label="Instagram">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.8a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/cv-berkah-doa-bunda-a29b27397/?locale=in_ID" class="social-link" aria-label="LinkedIn">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-.9 1.7-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.8V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21h-4V9z" />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@bdbfloor_epoxycat?_r=1&_t=ZS-93K6w7OKGgc" class="social-link" aria-label="TikTok">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M16.7 5.3c-1-.6-1.8-1.5-2.2-2.6h-2.6v12.2c0 1.3-1.1 2.4-2.4 2.4S7 16.2 7 14.9c0-1.3 1.1-2.4 2.4-2.4.2 0 .4 0 .6.1V9.9c-.2 0-.4-.1-.6-.1-2.9 0-5.1 2.3-5.1 5.1S6.5 20 9.3 20s5.1-2.3 5.1-5.1V9.1c1.2.8 2.6 1.3 4.1 1.3V7.8c-.6 0-1.2-.2-1.8-.5z"
+                    />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
