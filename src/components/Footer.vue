@@ -173,10 +173,49 @@ hr {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .footer-map iframe {
-    height: 200px;
+  /* Footer umum */
+  .site-footer {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    text-align: left;
   }
+
+  /* Section kiri */
+  .footer-section {
+    text-align: left;
+  }
+
+  /* Info perusahaan */
+  .footer-section h5 {
+    font-size: 1.1rem;
+  }
+
+  .footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* Kontak & sosial jadi vertikal */
+  .footer-section .d-flex.flex-wrap {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Alamat & email */
+  .footer-section ul li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+.footer-map iframe {
+  height: 180px;
+  margin-top: 0;
+}
+
+.social-link svg {
+  width: 26px;
+  height: 26px;
 }
 </style>
